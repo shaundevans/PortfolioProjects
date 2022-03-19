@@ -1,0 +1,20 @@
+The data was first reviewed in Excel.  It was filtered and the following adjustments were made: 
+
+(1) start_station_name, end_station_name
+    (a) empty/null cells were filled with 'Unknown'
+
+(2) start_station_id, end_station_id
+    (a) empty/null cells were filled with 'NA' 
+    (b) the locations below did not have a start_station_id or end_station_id
+        -- W Oakdale Ave & N Broadway - station_id established: WOANB
+        -- W Armitage Ave & N Sheffield Ave - station id established:WAANSA 
+        -- N Clark St & W Elm St - station id established: NCSWES
+        -- S Michigan Ave & E 118th St - station id established: SMAE118S
+        
+
+(3) empty start_lat, start_lng, end_lat, end_lng
+    (a) these values were left as blank/null fields
+
+(4) two new columns were added to each worksheet during the cleaning process
+    (a) ride_length - a calculation of ride duration (=D1-C1)
+        -- illogical values resulting from this calculation were left null
