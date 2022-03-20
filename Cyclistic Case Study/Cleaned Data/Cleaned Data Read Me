@@ -1,4 +1,4 @@
-The data was first reviewed in Excel.  It was filtered and the following adjustments were made: 
+The data was first reviewed in Excel. Files that are in excess of 25MB are excluded due to GitHub sizing constraints. The data was filtered and the following adjustments were made: 
 
 (1) start_station_name, end_station_name
     (a) empty/null cells were filled with 'Unknown'
