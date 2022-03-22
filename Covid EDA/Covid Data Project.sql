@@ -96,5 +96,9 @@ from covid_deaths as d
 where (d.continent <> '') is true
 order by 2, 3)
 
-
-
+-- cumulative case and death count by country (visualization) 
+select location, continent, max(total_cases) as total_cases_max, max(total_deaths) as total_deaths_max
+from covid_deaths 
+where (continent <> '') is true 
+group by "location", continent 
+order by total_cases_max desc; 
