@@ -1,4 +1,7 @@
 Source Data uploaded is available under license from Motivate International, Inc. 
+-- All original files available through this URL: 
+    https://divvy-tripdata.s3.amazonaws.com/index.html
+
 
 -- Data is uncleaned
 -- Not all source files included due to GitHub size constraints (i.e. files > 25MB)
