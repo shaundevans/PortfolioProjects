@@ -37,6 +37,42 @@ where personname ilike any(array['%Beate Heister%', '%Karl Albrect%', '%Hank Mei
 '%Ian Livingstone%', '%Richard Livingstone%', '%Bajaj%', '%von Finck%', '%resnick%', '%%Safra%', '%John Wilson%', '%Alan Wilson%', 
 '%bruce Wilson%', '%Kwee%','%Yiwen%', '%Bhatia%'])
 
+-- Updating Age for Individuals will Null Values (given the constraints of our data set, and source material, we'll be using google search to fill in the age nulls in this case)
+/* No Known Age for the following: Zhang Hejun, */ 
+update forbes 
+set "age" = (extract(year from current_date) - 1989)
+where personname = 'Maximilian Viessmann'
 
+update forbes
+set "age" = (extract(year from current_date) - 1989)
+where personname = 'Zong Yanmin'
+
+update forbes 
+set "age" = 61 
+where personname = 'Zhang Hejun'
+
+
+/* Billionaire Count by Country */ 
+select count(personname) as n_billionaires, country
+from forbes
+group by country 
+order by n_billionaires desc
+
+/* Average Net Worth by Country */ 
+select sum(finalworth)/count(personname) as avg_networth, country
+from forbes 
+group by country 
+order by avg_networth desc 
+
+-- Standard Deviation and Average Net Worth by Industry 
+select stddev(finalworth) as std_dev, round(avg(finalworth)::int4,2) as avg_worth, category
+from forbes f 
+group by category 
+order by std_dev desc, avg_worth desc 
+
+
+
+
+ 
 
 
