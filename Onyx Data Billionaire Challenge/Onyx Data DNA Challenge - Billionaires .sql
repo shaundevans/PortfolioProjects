@@ -47,10 +47,6 @@ update forbes
 set "age" = (extract(year from current_date) - 1989)
 where personname = 'Zong Yanmin'
 
-update forbes 
-set "age" = 61 
-where personname = 'Zhang Hejun'
-
 
 /* Billionaire Count by Country */ 
 select count(personname) as n_billionaires, country
