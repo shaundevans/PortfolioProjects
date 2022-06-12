@@ -132,6 +132,50 @@ select "rank", personname, "age", finalworth, philanthropyscore from forbes f
 order by finalworth desc 
 limit 5
 
+select "rank", personname, age, finalworth, philanthropyscore
+from forbes f 
+where philanthropyscore is not null
+order by philanthropyscore desc
+
+-- Determining total philanthropic efforts based on Forbes Philanthropy Score metric as an aggregate dollar amount 
+select "rank", personname, "age", finalworth, 
+case 
+	when philanthropyscore = 5 then (finalworth * .20)
+	when philanthropyscore = 4 then (finalworth * .10)
+	when philanthropyscore = 3 then (finalworth * .05)
+	else finalworth * .01
+end as donated_in_bil_low,
+case 
+	when philanthropyscore = 5 then (finalworth * .50)
+	when philanthropyscore = 4 then (finalworth * .1999)
+	when philanthropyscore = 3 then (finalworth * .999)
+	else finalworth * .0499 
+end as donated_in_bil_high,
+philanthropyscore 
+from forbes 
+order by donated_in_bil_low desc 
+limit 5
+
+-- Number of Billionaires by Philanthropy Score Group
+select count(personname), sum(finalworth) as totalnet, philanthropyscore, 
+case 
+	when philanthropyscore = 5 then (SUM(finalworth)*.2 + SUM(finalworth)*.5)/2
+	when philanthropyscore = 4 then (SUM(finalworth)*.1 + SUM(finalworth)*.1999)/2
+	when philanthropyscore = 3 then (SUM(finalworth)*.05 + sum(finalworth)*.0999)/2
+	when philanthropyscore = 2 then (SUM(finalworth)*.01 + SUM(finalworth)*.0499)/2
+	else SUM(finalworth)*.009999
+end as total_donated_estimate
+from forbes f 
+where philanthropyscore is not null 
+group by philanthropyscore 
+order by philanthropyscore desc
+
+
+
+
+
+
+
 
 
 
